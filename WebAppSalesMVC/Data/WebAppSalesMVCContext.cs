@@ -14,6 +14,8 @@ namespace WebAppSalesMVC.Data
         {
         }
 
-        public DbSet<WebAppSalesMVC.Models.State> State { get; set; }
+        public DbSet<State> State { get; set; }
+        public DbSet<Subsidiary> Subsidiary { get; set; }
+        public DbSet<SalesRecord> SalesRecord { get; set; }
     }
 }
