@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebAppSalesMVC.Data;
+using WebAppSalesMVC.Services;
 
 namespace WebAppSalesMVC
 {
@@ -38,6 +39,8 @@ namespace WebAppSalesMVC
 
             services.AddDbContext<WebAppSalesMVCContext>(options =>
             options.UseMySql(Configuration.GetConnectionString("WebAppSalesMVCContext"), builder => builder.MigrationsAssembly("WebAppSalesMVC")));
+
+            services.AddScoped<SubsidiaryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
