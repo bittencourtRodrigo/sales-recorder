@@ -1,0 +1,43 @@
+﻿@model WebAppSalesMVC.Models.Subsidiary
+
+<h2>Delete this seller?</h2>
+<hr />
+<div>
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)  
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Opening)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Opening)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FixedCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FixedCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.State.Name)
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

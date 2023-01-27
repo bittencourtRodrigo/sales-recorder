@@ -11,7 +11,7 @@ namespace WebAppSalesMVC.Models
         public DateTime Opening { get; set; }
         public double FixedCost { get; set; }
         public State State { get; set; }
-        public int StateId { get; set; }
+        public int StateId { get; set; } //foreign key incrementation
         public ICollection<SalesRecord> SalesRecords { get; set; } = new List<SalesRecord>();
 
         public Subsidiary()

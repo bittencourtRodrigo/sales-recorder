@@ -41,6 +41,7 @@ namespace WebAppSalesMVC
             options.UseMySql(Configuration.GetConnectionString("WebAppSalesMVCContext"), builder => builder.MigrationsAssembly("WebAppSalesMVC")));
 
             services.AddScoped<SubsidiaryService>();
+            services.AddScoped<StateService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
