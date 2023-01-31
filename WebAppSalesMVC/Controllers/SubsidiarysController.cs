@@ -8,6 +8,7 @@ using WebAppSalesMVC.Models.ViewModels;
 using WebAppSalesMVC.Services;
 using WebAppSalesMVC.Data;
 using WebAppSalesMVC.Services.Exceptions;
+using System.Diagnostics;
 
 namespace WebAppSalesMVC.Controllers
 {
@@ -37,6 +38,12 @@ namespace WebAppSalesMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Subsidiary subsidiary)
         {
+            if (!ModelState.IsValid)
+            {
+                var states = _stateService.GetStates();
+                var formView = new SubsidiaryFormViewModel() { Subsidiary = subsidiary, States = states };
+                return View(formView);
+            }
             _subsidiaryService.AddNewSubsidiary(subsidiary);
             return RedirectToAction(nameof(Index));
         }
@@ -44,12 +51,11 @@ namespace WebAppSalesMVC.Controllers
         public IActionResult Delete(int? id)
         {
             if (id == null)
-                return NotFound();
-            
-            var obj = _subsidiaryService.GetById(id.Value);
+                return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });
 
+            var obj = _subsidiaryService.GetById(id.Value);
             if (obj == null)
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });
 
             return View(obj);
         }
@@ -66,26 +72,33 @@ namespace WebAppSalesMVC.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });
             }
 
             var obj = _subsidiaryService.GetById(id.Value);
             if (obj == null)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });
             }
             List<State> states = _stateService.GetStates();
-            SubsidiaryFormViewModel subsidiaryFormView = new SubsidiaryFormViewModel() { Subsidiary = obj, States = states };
-            return View(subsidiaryFormView);
+            SubsidiaryFormViewModel FormView = new SubsidiaryFormViewModel() { Subsidiary = obj, States = states };
+            return View(FormView);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Subsidiary subsidiary)
         {
+            if (!ModelState.IsValid)
+            {
+                var states = _stateService.GetStates();
+                var formView = new SubsidiaryFormViewModel() { Subsidiary = subsidiary, States = states };
+                return View(formView);
+            }
+
             if (id != subsidiary.Id)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });
             }
 
             try
@@ -93,15 +106,32 @@ namespace WebAppSalesMVC.Controllers
                 _subsidiaryService.Update(subsidiary);
                 return RedirectToAction(nameof(Index));
             }
-            catch(NotFoundExeption)
+            catch (ApplicationException)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });
             }
-            catch(DbConcurrencyException)
+        }
+        
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });
             }
-        } 
+
+            var subsidiary = _subsidiaryService.GetById(id.Value);
+            if (subsidiary == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });
+            }
+            return View(subsidiary);
+        }
+
+        public IActionResult Error(string message)
+        {
+            var ViewError = new ErrorViewModel() { Message = message, RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
+            return View(ViewError);
+        }
     }
 }
 

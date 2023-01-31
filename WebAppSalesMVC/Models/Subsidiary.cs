@@ -1,18 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 namespace WebAppSalesMVC.Models
 {
     public class Subsidiary
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "{0} cannot be empty!")]
+        [StringLength(20, MinimumLength = 5)]
         public string Name { get; set; }
+
+        [Required(ErrorMessage = "{0} cannot be empty!")]
+        [EmailAddress]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "{0} cannot be empty!")]
+        [DataType(DataType.Date)]
         public DateTime Opening { get; set; }
+
+        [Required(ErrorMessage = "{0} cannot be empty!")]
+        [Display(Name = "Fixed Cost")]
+        [DataType(DataType.Currency)]
         public double FixedCost { get; set; }
+            
         public State State { get; set; }
         public int StateId { get; set; } //foreign key incrementation
         public ICollection<SalesRecord> SalesRecords { get; set; } = new List<SalesRecord>();
+       
 
         public Subsidiary()
         {

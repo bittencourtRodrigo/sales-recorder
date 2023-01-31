@@ -42,16 +42,16 @@ namespace WebAppSalesMVC.Services
             _context.SaveChanges();
         }
 
-        public void Update(Subsidiary obj)
+        public void Update(Subsidiary subsidiary)
         {
-            if (!_context.Subsidiary.Any(x =>  x.Id == obj.Id))
+            if (!_context.Subsidiary.Any(x =>  x.Id == subsidiary.Id))
             {
                 throw new NotFoundExeption("Some data was not found");
             }
 
             try
             {
-                _context.Update(obj); //May return concurrency error
+                _context.Update(subsidiary); //May return concurrency error
                 _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException e)

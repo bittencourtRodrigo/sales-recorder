@@ -1,0 +1,41 @@
+﻿@model WebAppSalesMVC.Models.Subsidiary
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+<div>
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Opening)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Opening)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FixedCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FixedCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.State.Name)
+        </dd>
+    </dl>
+    <a asp-action="Index">Back to list</a>
