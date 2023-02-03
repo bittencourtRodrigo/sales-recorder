@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,9 +17,9 @@ namespace WebAppSalesMVC.Services
             _context = context;
         }
 
-        public List<State> GetStates()
+        public async Task<List<State>> GetStatesAsync()
         {
-            return _context.State.OrderBy(x => x.Name).ToList();
+            return await _context.State.OrderBy(x => x.Name).ToListAsync();
         }
     }
 }

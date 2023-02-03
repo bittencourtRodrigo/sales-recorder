@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAppSalesMVC.Data;
 using WebAppSalesMVC.Models;
+using WebAppSalesMVC.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using WebAppSalesMVC.Services.Exceptions;
@@ -13,38 +14,47 @@ namespace WebAppSalesMVC.Services
     public class SubsidiaryService
     {
         private readonly WebAppSalesMVCContext _context;
-        
+
         public SubsidiaryService(WebAppSalesMVCContext context)
         {
             _context = context;
         }
 
-        public List<Subsidiary> GetSubsidiaries()
+        public async Task<List<Subsidiary>> GetSubsidiariesAsync()
         {
-            return _context.Subsidiary.Include(obj => obj.State).ToList();
+            return await _context.Subsidiary.Include(obj => obj.State).ToListAsync();
         }
 
-        public void AddNewSubsidiary(Subsidiary obj)
+        public async Task AddNewSubsidiaryAsync(Subsidiary subsidiary)
         {
-            obj.State = _context.State.First();
-            _context.Subsidiary.Add(obj);
-            _context.SaveChanges();
+            _context.Subsidiary.Add(subsidiary);
+            await _context.SaveChangesAsync();
         }
 
-        public Subsidiary GetById(int id)
+        public async Task<Subsidiary> GetByIdAsync(int id)
         {
-            return _context.Subsidiary.Include(obj => obj.State).FirstOrDefault(obj => obj.Id == id);
+            return await _context.Subsidiary.Include(obj => obj.State).FirstOrDefaultAsync(obj => obj.Id == id);
         }
 
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            _context.Subsidiary.Remove(GetById(id));
-            _context.SaveChanges();
+            try
+            {
+                var subsidiary = await GetByIdAsync(id);
+                _context.Subsidiary.Remove(subsidiary);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                throw new IntegrityException("You have tried to exclude a subsidiary with sales record");
+            }
+
         }
 
-        public void Update(Subsidiary subsidiary)
+        public async Task UpdateAsync(Subsidiary subsidiary)
         {
-            if (!_context.Subsidiary.Any(x =>  x.Id == subsidiary.Id))
+            var exists = await _context.Subsidiary.AnyAsync(x => x.Id == subsidiary.Id);
+            if (!exists)
             {
                 throw new NotFoundExeption("Some data was not found");
             }
@@ -52,13 +62,12 @@ namespace WebAppSalesMVC.Services
             try
             {
                 _context.Update(subsidiary); //May return concurrency error
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException e)
             {
                 throw new DbConcurrencyException(e.Message); //to keep segregation and return a possible service class error, we re-post the error from it
             }
-
         }
     }
 }

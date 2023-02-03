@@ -36,7 +36,6 @@ namespace WebAppSalesMVC
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<WebAppSalesMVCContext>(options =>
@@ -44,6 +43,7 @@ namespace WebAppSalesMVC
 
             services.AddScoped<SubsidiaryService>();
             services.AddScoped<StateService>();
+            services.AddScoped<SalesRecordService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

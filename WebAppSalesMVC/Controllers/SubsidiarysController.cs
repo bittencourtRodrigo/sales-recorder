@@ -22,76 +22,85 @@ namespace WebAppSalesMVC.Controllers
             _subsidiaryService = subsidiaryService;
             _stateService = stateService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var subsidiaries = _subsidiaryService.GetSubsidiaries();
+            var subsidiaries = await _subsidiaryService.GetSubsidiariesAsync();
             return View(subsidiaries);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var viewModel = new SubsidiaryFormViewModel { States = _stateService.GetStates() }; 
+            var states = await _stateService.GetStatesAsync();
+            var viewModel = new SubsidiaryFormViewModel { States = states }; 
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Subsidiary subsidiary)
+        public async Task<IActionResult> Create(Subsidiary subsidiary)
         {
             if (!ModelState.IsValid)
             {
-                var states = _stateService.GetStates();
+                var states = await _stateService.GetStatesAsync();
                 var formView = new SubsidiaryFormViewModel() { Subsidiary = subsidiary, States = states };
                 return View(formView);
             }
-            _subsidiaryService.AddNewSubsidiary(subsidiary);
+            
+            await _subsidiaryService.AddNewSubsidiaryAsync(subsidiary);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
                 return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });
 
-            var obj = _subsidiaryService.GetById(id.Value);
-            if (obj == null)
+            var subsidiary = await _subsidiaryService.GetByIdAsync(id.Value);
+            if (subsidiary == null)
                 return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });
 
-            return View(obj);
+            return View(subsidiary);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _subsidiaryService.Remove(id);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                await _subsidiaryService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch(IntegrityException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });
             }
 
-            var obj = _subsidiaryService.GetById(id.Value);
-            if (obj == null)
+            var subsidiary = await _subsidiaryService.GetByIdAsync(id.Value);
+            if (subsidiary == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });
             }
-            List<State> states = _stateService.GetStates();
-            SubsidiaryFormViewModel FormView = new SubsidiaryFormViewModel() { Subsidiary = obj, States = states };
+            List<State> states = await _stateService.GetStatesAsync();
+            SubsidiaryFormViewModel FormView = new SubsidiaryFormViewModel() { Subsidiary = subsidiary, States = states };
             return View(FormView);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Subsidiary subsidiary)
+        public async Task<IActionResult> Edit(int id, Subsidiary subsidiary)
         {
             if (!ModelState.IsValid)
             {
-                var states = _stateService.GetStates();
+                var states = await _stateService.GetStatesAsync();
                 var formView = new SubsidiaryFormViewModel() { Subsidiary = subsidiary, States = states };
                 return View(formView);
             }
@@ -103,7 +112,7 @@ namespace WebAppSalesMVC.Controllers
 
             try
             {
-                _subsidiaryService.Update(subsidiary);
+                await _subsidiaryService.UpdateAsync(subsidiary);
                 return RedirectToAction(nameof(Index));
             }
             catch (ApplicationException)
@@ -112,14 +121,14 @@ namespace WebAppSalesMVC.Controllers
             }
         }
         
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });
             }
 
-            var subsidiary = _subsidiaryService.GetById(id.Value);
+            var subsidiary = await _subsidiaryService.GetByIdAsync(id.Value);
             if (subsidiary == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });

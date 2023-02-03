@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -139,15 +140,28 @@ namespace WebAppSalesMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var state = await _context.State.FindAsync(id);
-            _context.State.Remove(state);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                var state = await _context.State.FindAsync(id);
+                _context.State.Remove(state);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateException)
+            {
+                return RedirectToAction(nameof(Error), new { message = "You have tried to exclude a state with active subisidiaries." });
+            }
         }
 
         private bool StateExists(int id)
         {
             return _context.State.Any(e => e.Id == id);
+        }
+
+        public IActionResult Error(string message)
+        {
+            var ViewModel = new ErrorViewModel() { Message = message, RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
+            return View(ViewModel);
         }
     }
 }
