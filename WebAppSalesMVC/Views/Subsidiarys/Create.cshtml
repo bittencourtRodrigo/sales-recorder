@@ -1,41 +1,41 @@
 ﻿@model WebAppSalesMVC.Models.ViewModels.SubsidiaryFormViewModel
-
 @{
-    ViewData["Title"] = "Create new subsidiary";
+    ViewData["Title"] = "Create subsidiary";
 }
-
-<h4>@ViewData["Title"]</h4>
+<h1>@ViewData["Title"]</h1>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        
+    <div class="col-lg-4">
         <form asp-action="Create">
             <div class="form-group">
                 <label asp-for="Subsidiary.Name" class="control-label"></label>
                 <input asp-for="Subsidiary.Name" class="form-control" />
-                <span asp-validation-for="Subsidiary.Name" class="text-warning"></span>
+                <span asp-validation-for="Subsidiary.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Subsidiary.Email" class="control-label"></label>
                 <input asp-for="Subsidiary.Email" class="form-control" />
-                <span asp-validation-for="Subsidiary.Email" class="text-warning"></span>
+                <span asp-validation-for="Subsidiary.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Subsidiary.Opening" class="control-label"></label>
                 <input asp-for="Subsidiary.Opening" class="form-control" />
-                <span asp-validation-for="Subsidiary.Opening" class="text-warning"></span>
+                <span asp-validation-for="Subsidiary.Opening" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Subsidiary.FixedCost" class="control-label"></label>
                 <input asp-for="Subsidiary.FixedCost" class="form-control" />
-                <span asp-validation-for="Subsidiary.FixedCost" class="text-warning"></span>
+                <span asp-validation-for="Subsidiary.FixedCost" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Subsidiary.State" class="control-label"></label>
+                <label asp-for="Subsidiary.StateId" class="control-label"></label>
                 <select asp-for="Subsidiary.StateId" asp-items="@(new SelectList(Model.States, "Id", "Name"))" class="form-control"></select>
+                <span asp-validation-for="Subsidiary.StateId" class="text-danger"></span>
             </div>
+            <hr />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default alert-danger" />
+                <input type="submit" value="Create" class="btn btn-default alert-success" />
+                <a asp-action="Index" class="btn alert-warning">Back</a>
             </div>
         </form>
     </div>

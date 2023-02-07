@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<WebAppSalesMVC.Models.Subsidiary>
-
 @{
     ViewData["Title"] = "Subsidiaries";
 }
-
 <h1>@ViewData["Title"]</h1>
-
-<p><a asp-action="Create" class="btn alert-success">Create new subsidiary</a></p>
+<p>
+    <a asp-action="Create" class="btn alert-success">Create subsidiary</a>
+</p>
+<hr />
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -25,7 +25,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.State)
             </th>
-            <th>
+            <th class="col-xs-pull-0">
+                Actions
             </th>
         </tr>
     </thead>
@@ -49,12 +50,11 @@
                     @Html.DisplayFor(modelItem => item.State.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-

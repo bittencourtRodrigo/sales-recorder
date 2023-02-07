@@ -12,6 +12,7 @@ namespace WebAppSalesMVC.Data
         public WebAppSalesMVCContext (DbContextOptions<WebAppSalesMVCContext> options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
 
         public DbSet<State> State { get; set; }

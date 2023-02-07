@@ -1,24 +1,21 @@
 ﻿@model WebAppSalesMVC.Models.State
-
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Details state";
 }
-
-<h2>Details</h2>
-
-<div>
-    <h4>State</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div class="row">
+    <div class="col-lg-4">
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd style="background-color: #e7e7e7; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; padding: 5px">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+        </dl>
+        <hr />
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn alert-info">Edit</a>
+        <a asp-action="Index" class="btn alert-warning">Back</a>
+    </div>
 </div>

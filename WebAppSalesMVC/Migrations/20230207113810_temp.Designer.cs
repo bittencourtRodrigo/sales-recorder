@@ -9,8 +9,8 @@ using WebAppSalesMVC.Data;
 namespace WebAppSalesMVC.Migrations
 {
     [DbContext(typeof(WebAppSalesMVCContext))]
-    [Migration("20230124104139_Start")]
-    partial class Start
+    [Migration("20230207113810_temp")]
+    partial class temp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,15 +56,18 @@ namespace WebAppSalesMVC.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
                     b.Property<double>("FixedCost");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
                     b.Property<DateTime>("Opening");
 
-                    b.Property<int?>("StateId");
+                    b.Property<int>("StateId");
 
                     b.HasKey("Id");
 
@@ -84,7 +87,8 @@ namespace WebAppSalesMVC.Migrations
                 {
                     b.HasOne("WebAppSalesMVC.Models.State", "State")
                         .WithMany("Subsidiaries")
-                        .HasForeignKey("StateId");
+                        .HasForeignKey("StateId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

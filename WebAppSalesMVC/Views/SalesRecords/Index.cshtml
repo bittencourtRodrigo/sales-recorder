@@ -1,5 +1,9 @@
-﻿<h1>Search Sales</h1>
-<div class="col-sm-6">
+﻿@{ 
+    ViewData["Title"] = "Search sales";
+}
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div class="col-lg-6">
     <form class="form-horizontal" asp-action="SearchSimpleByDate">
         <fieldset>
             <legend>Simple search</legend>
@@ -23,10 +27,10 @@
         </fieldset>
     </form>
 </div>
-<div class="col-sm-6">
+<div class="col-lg-6">
     <form class="form-horizontal" asp-action="SearchGroupingByDate">
         <fieldset>
-            <legend>Grouping search</legend>
+            <legend>State group search</legend>
             <div class="form-group">
                 <label for="dateMin" class="col-lg-2 control-label">Min Date</label>
                 <div class="col-lg-10">

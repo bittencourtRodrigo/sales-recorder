@@ -1,21 +1,21 @@
 ﻿@model IEnumerable<WebAppSalesMVC.Models.State>
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "States";
 }
-
-<h2>Index</h2>
-
+<h1>@ViewData["Title"]</h1>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn alert-success">Create state</a>
 </p>
-<table class="table">
+<hr />
+<table class="table table-bordered">
     <thead>
         <tr>
-            <th>
+            <th class="col-lg-10">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th></th>
+            <th class="col-xs-pull-2">
+                Actions
+            </th>
         </tr>
     </thead>
     <tbody>
