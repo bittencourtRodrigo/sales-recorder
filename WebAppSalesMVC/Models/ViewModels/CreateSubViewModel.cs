@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebAppSalesMVC.Models.ViewModels
 {
-    public class SubsidiaryFormViewModel
+    public class CreateSubViewModel
     {
         public Subsidiary Subsidiary { get; set; }
         public ICollection<State> States { get; set; }

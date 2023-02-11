@@ -20,9 +20,13 @@ namespace WebAppSalesMVC.Services
             _context = context;
         }
 
-        public async Task<List<Subsidiary>> GetSubsidiariesAsync()
+        public async Task<List<Subsidiary>> GetSubIncStateAsync()
         {
             return await _context.Subsidiary.Include(obj => obj.State).ToListAsync();
+        }
+        public async Task<List<Subsidiary>> GetSubAsync()
+        {
+            return await _context.Subsidiary.ToListAsync();
         }
 
         public async Task AddNewSubsidiaryAsync(Subsidiary subsidiary)
@@ -68,6 +72,11 @@ namespace WebAppSalesMVC.Services
             {
                 throw new DbConcurrencyException(e.Message); //to keep segregation and return a possible service class error, we re-post the error from it
             }
+        }
+
+        public async Task<List<Subsidiary>> GetSubByState(int id)
+        {
+            return await _context.Subsidiary.Where(x => x.StateId == id).ToListAsync();
         }
     }
 }

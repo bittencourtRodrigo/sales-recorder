@@ -13,6 +13,7 @@ namespace WebAppSalesMVC.Models
         public double Amount { get; set; }
         public SaleStatus Status { get; set; }
         public Subsidiary Subsidiary { get; set; }
+        public int SubsidiaryId { get; set; }
 
         public SalesRecord()
         {

@@ -24,14 +24,14 @@ namespace WebAppSalesMVC.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var subsidiaries = await _subsidiaryService.GetSubsidiariesAsync();
+            var subsidiaries = await _subsidiaryService.GetSubIncStateAsync();
             return View(subsidiaries);
         }
 
         public async Task<IActionResult> Create()
         {
             var states = await _stateService.GetStatesAsync();
-            var viewModel = new SubsidiaryFormViewModel { States = states }; 
+            var viewModel = new CreateSubViewModel { States = states }; 
             return View(viewModel);
         }
 
@@ -42,7 +42,7 @@ namespace WebAppSalesMVC.Controllers
             if (!ModelState.IsValid)
             {
                 var states = await _stateService.GetStatesAsync();
-                var formView = new SubsidiaryFormViewModel() { Subsidiary = subsidiary, States = states };
+                var formView = new CreateSubViewModel() { Subsidiary = subsidiary, States = states };
                 return View(formView);
             }
             
@@ -90,7 +90,7 @@ namespace WebAppSalesMVC.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Error N. Report it." });
             }
             List<State> states = await _stateService.GetStatesAsync();
-            SubsidiaryFormViewModel FormView = new SubsidiaryFormViewModel() { Subsidiary = subsidiary, States = states };
+            var FormView = new CreateSubViewModel() { Subsidiary = subsidiary, States = states };
             return View(FormView);
         }
 
@@ -101,7 +101,7 @@ namespace WebAppSalesMVC.Controllers
             if (!ModelState.IsValid)
             {
                 var states = await _stateService.GetStatesAsync();
-                var formView = new SubsidiaryFormViewModel() { Subsidiary = subsidiary, States = states };
+                var formView = new CreateSubViewModel() { Subsidiary = subsidiary, States = states };
                 return View(formView);
             }
 

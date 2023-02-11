@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebAppSalesMVC.Data;
 using WebAppSalesMVC.Models;
+using WebAppSalesMVC.Models.ViewModels;
 
 namespace WebAppSalesMVC.Controllers
 {

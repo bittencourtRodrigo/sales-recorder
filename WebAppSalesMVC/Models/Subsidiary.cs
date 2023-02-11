@@ -7,6 +7,7 @@ namespace WebAppSalesMVC.Models
     public class Subsidiary
     {
         public int Id { get; set; }
+
         [Required(ErrorMessage = "{0} cannot be empty!")]
         [StringLength(20, MinimumLength = 5)]
         public string Name { get; set; }

@@ -55,5 +55,11 @@ namespace WebAppSalesMVC.Services
                 .GroupBy(x => x.Subsidiary.State)
                 .ToListAsync();
         }
+
+        public void CreateSale(SalesRecord sale)
+        {
+            _context.SalesRecord.Add(sale);
+            _context.SaveChanges();
+        }
     }
 }

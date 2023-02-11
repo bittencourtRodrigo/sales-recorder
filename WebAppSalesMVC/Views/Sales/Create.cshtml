@@ -1,0 +1,20 @@
+﻿@model WebAppSalesMVC.Models.ViewModels.CreateSaleViewModel
+@{
+    ViewData["Title"] = "Sale Create";
+}
+<h1>@ViewData["Title"]</h1>
+<hr />
+<form asp-action="Create2">
+    <label asp-for="SalesRecord.Date"></label>
+    <input asp-for="SalesRecord.Date">
+
+    <label asp-for="SalesRecord.Amount"></label>
+    <input asp-for="SalesRecord.Amount" />
+
+    <label asp-for="SalesRecord.Status"></label>
+    <select asp-for="SalesRecord.Status" asp-items="Html.GetEnumSelectList<WebAppSalesMVC.Models.Enums.SaleStatus>()"></select>
+
+    <label asp-for="SalesRecord.SubsidiaryId"></label>
+    <select asp-for="SalesRecord.SubsidiaryId" asp-items="@(new SelectList(Model.Subsidiaries, "Id", "Name"))"></select>
+    <input type="submit" />
+</form>

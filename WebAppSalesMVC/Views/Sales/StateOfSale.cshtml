@@ -1,0 +1,11 @@
+﻿@model IEnumerable<WebAppSalesMVC.Models.State>
+@{
+    ViewData["Title"] = "State of sale";
+    int? id = null;
+}
+<h1>@ViewData["Title"]</h1>
+<hr />
+<form asp-action="Create">
+    <select asp-for="@id" asp-items="@(new SelectList(Model, "Id", "Name"))"></select>
+    <input type="submit" />
+</form>
