@@ -40,6 +40,7 @@
                         #navbar-primary.navbar-default .navbar-nav > li > a {
                             padding-left: 30px;
                             padding-right: 30px;
+                            font-weight: bold;
                         }
         </style>
         <nav id="navbar-primary" class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -57,7 +58,7 @@
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-area="" asp-controller="States" asp-action="Index">States</a></li>
                         <li><a asp-area="" asp-controller="Subsidiarys" asp-action="Index">Subsidiaries</a></li>
-                        <li><a asp-area="" asp-controller="SalesRecords" asp-action="Index">Sales</a></li>
+                        <li><a asp-area="" asp-controller="Sales" asp-action="SalesRecords">Sales records</a></li>
                     </ul>
                 </div>
             </div>
@@ -67,7 +68,7 @@
 <partial name="_CookieConsentPartial" />
 <div class="container body-content">
     @RenderBody()
-    <footer>
+    <footer class="hidden">
         <i>&empty; This is project at construction. Please, come back later. Att, Team WebAppSalesMVC</i>
     </footer>
 </div>

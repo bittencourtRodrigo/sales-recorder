@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Search sales";
+}
+<link rel="stylesheet" href="~/css/Style.css" />
+<div class="col-lg-6">
+    <form asp-action="SearchSimpleByDate">
+
+        <h1>General sales</h1>
+        <hr />
+        <div>
+            <label>Min Date</label>
+        </div>
+        <div>
+            <input type="date" name="dateMin" class="inputBox" />
+        </div>
+
+        <div>
+            <label>Max Date</label>
+        </div>
+        <div>
+            <input type="date" name="dateMax" class="inputBox" />
+        </div>
+        <hr />
+        <div>
+            <button type="submit" class="myBottom confirmBotton">Next</button>
+        </div>
+    </form>
+</div>
+<div class="col-lg-6">
+    <form asp-action="SearchGroupingByDate">
+
+        <h1>Sales per state</h1>
+        <hr />
+        <div>
+            <label>Min Date</label>
+        </div>
+        <div>
+            <input type="date" name="dateMin" class="inputBox" />
+        </div>
+
+        <div>
+            <label>Max Date</label>
+        </div>
+        <div>
+            <input type="date" name="dateMax" class="inputBox" />
+        </div>
+        <hr />
+        <div>
+            <button type="submit" class="myBottom confirmBotton">Next</button>
+        </div>
+    </form>
+</div>

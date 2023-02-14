@@ -1,0 +1,97 @@
+﻿#btnHome{
+    width: 300px;
+}
+.textHome{
+    font-family: Constantia;
+    font-weight: 600;
+    font-size: 42px;
+}
+.boxHomeYelow{
+    background-color: #ffeea9;
+    border-radius: 20px;
+    padding: 175px;
+    margin-top: 40px;
+}
+.boxHomeGray {
+    background-color: #e7e7e7;
+    border-radius: 20px;
+    padding-bottom: 205px;
+    padding-top: 205px;
+    margin-top: 40px;
+    text-align: center;
+    
+}
+
+
+body {
+
+    background-color: aliceblue;
+    text-align: center;
+    column-width: 800px;
+}
+
+.myBottom {
+    display: inline-block;
+    margin-bottom: 0;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius: 5px;
+    width: 150px;
+    height: 30px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.confirmBotton {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.deleteBotton {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.backBotton {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+
+.inputBox {
+    border-radius: 5px;
+    width: 300px;
+    height: 30px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #959595;
+    border-color: #e7e7e7;
+}
+
+
+
+label {
+    font-weight: 900;
+    color: #4b4b4b;
+    font-family: Constantia;
+}
+h1 {
+    font-weight: bolder;
+    font-family: Constantia;
+}

@@ -21,13 +21,42 @@ namespace WebAppSalesMVC.Controllers
             _salesRecordService = salesRecordService;
         }
 
-        public async Task<IActionResult> StateOfSale()
+        public IActionResult SalesRecords()
         {
-            var states = await _stateService.GetStatesAsync();
-            return View(states);
+            return View();
         }
 
-        
+        public async Task<IActionResult> SearchSimpleByDate(DateTime? dateMin, DateTime? dateMax)
+        {
+            if (!dateMax.HasValue)
+            {
+                dateMax = DateTime.Today;
+            }
+            if (!dateMin.HasValue)
+            {
+                dateMin = new DateTime(1, 1, 1);
+            }
+            ViewData["dateMin"] = dateMin.Value.ToString("yyyy-MM-dd");
+            ViewData["dateMax"] = dateMax.Value.ToString("yyyy-MM-dd");
+            var listSales = await _salesRecordService.GetSalesByDateAsync(dateMin, dateMax);
+            return View(listSales);
+        }
+
+        public async Task<IActionResult> SearchGroupingByDate(DateTime? dateMin, DateTime? dateMax)
+        {
+            if (!dateMax.HasValue)
+            {
+                dateMax = DateTime.Today;
+            }
+            if (!dateMin.HasValue)
+            {
+                dateMin = new DateTime(1, 1, 1);
+            }
+            ViewData["dateMin"] = dateMin.Value.ToString("yyyy-MM-dd");
+            ViewData["dateMax"] = dateMax.Value.ToString("yyyy-MM-dd");
+            var listSalesGroup = await _salesRecordService.GetSalesStatesByDateAsync(dateMin, dateMax);
+            return View(listSalesGroup);
+        }
         public async Task<IActionResult> Create(int? Id)
         {
             if (!Id.HasValue)
@@ -45,10 +74,9 @@ namespace WebAppSalesMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create2(SalesRecord salesRecord)
+        public ActionResult Create(SalesRecord salesRecord)
         {
             _salesRecordService.CreateSale(salesRecord);
-
             return RedirectToAction("Index", "Home");
         }
         

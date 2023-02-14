@@ -19,6 +19,7 @@ namespace WebAppSalesMVC.Models
 
         [Required(ErrorMessage = "{0} cannot be empty!")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0: MM/dd/yyy}")]
         public DateTime Opening { get; set; }
 
         [Required(ErrorMessage = "{0} cannot be empty!")]

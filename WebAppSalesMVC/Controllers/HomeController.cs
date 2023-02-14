@@ -5,14 +5,24 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAppSalesMVC.Models.ViewModels;
+using WebAppSalesMVC.Services;
 
 namespace WebAppSalesMVC.Controllers
 {
+
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public readonly StateService _stateService;
+
+        public HomeController(StateService stateService)
         {
-            return View();
+            _stateService = stateService;
+        }
+
+        public async Task<IActionResult> Index()
+        {   
+            var states = await _stateService.GetStatesAsync();
+            return View(states);
         }
 
         public IActionResult About()

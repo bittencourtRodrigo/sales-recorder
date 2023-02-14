@@ -56,9 +56,9 @@ namespace WebAppSalesMVC.Services
                 .ToListAsync();
         }
 
-        public void CreateSale(SalesRecord sale)
+        public void CreateSale(SalesRecord salesRecord)
         {
-            _context.SalesRecord.Add(sale);
+            _context.SalesRecord.Add(salesRecord);
             _context.SaveChanges();
         }
     }

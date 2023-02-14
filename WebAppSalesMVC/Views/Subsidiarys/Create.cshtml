@@ -2,44 +2,57 @@
 @{
     ViewData["Title"] = "Create subsidiary";
 }
-<h1>@ViewData["Title"]</h1>
-<hr />
-<div class="row">
-    <div class="col-lg-4">
-        <form asp-action="Create">
-            <div class="form-group">
-                <label asp-for="Subsidiary.Name" class="control-label"></label>
-                <input asp-for="Subsidiary.Name" class="form-control" />
-                <span asp-validation-for="Subsidiary.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Subsidiary.Email" class="control-label"></label>
-                <input asp-for="Subsidiary.Email" class="form-control" />
-                <span asp-validation-for="Subsidiary.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Subsidiary.Opening" class="control-label"></label>
-                <input asp-for="Subsidiary.Opening" class="form-control" />
-                <span asp-validation-for="Subsidiary.Opening" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Subsidiary.FixedCost" class="control-label"></label>
-                <input asp-for="Subsidiary.FixedCost" class="form-control" />
-                <span asp-validation-for="Subsidiary.FixedCost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Subsidiary.StateId" class="control-label"></label>
-                <select asp-for="Subsidiary.StateId" asp-items="@(new SelectList(Model.States, "Id", "Name"))" class="form-control"></select>
-                <span asp-validation-for="Subsidiary.StateId" class="text-danger"></span>
-            </div>
-            <hr />
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default alert-success" />
-                <a asp-action="Index" class="btn alert-warning">Back</a>
-            </div>
-        </form>
-    </div>
-</div>
+<head>
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+    <link rel="stylesheet" type="text/css" href="~/css/Style.css" />
+</head>
+<body>
+    <form asp-action="Create">
+        <div>
+            <label asp-for="Subsidiary.Name"></label>
+        </div>
+        <div>
+            <input asp-for="Subsidiary.Name" placeholder="Name" class="inputBox" />
+        </div>
+        <span asp-validation-for="Subsidiary.Name" class="text-danger"></span>
+        <div>
+            <label asp-for="Subsidiary.Email"></label>
+        </div>
+        <div>
+            <input asp-for="Subsidiary.Email" placeholder="Email" class="inputBox" />
+        </div>
+        <span asp-validation-for="Subsidiary.Email" class="text-danger"></span>
+        <div>
+            <label asp-for="Subsidiary.Opening"></label>
+        </div>
+        <div>
+            <input asp-for="Subsidiary.Opening" class="inputBox" />
+        </div>
+        <span asp-validation-for="Subsidiary.Opening" class="text-danger"></span>
+        <div>
+            <label asp-for="Subsidiary.FixedCost"></label>
+        </div>
+        <div>
+            <input asp-for="Subsidiary.FixedCost" placeholder="Fixed cost" class="inputBox" />
+        </div>
+        <span asp-validation-for="Subsidiary.FixedCost" class="text-danger"></span>
+        <div>
+            <label asp-for="Subsidiary.StateId"></label>
+        </div>
+        <div>
+            <select asp-for="Subsidiary.StateId" asp-items="@(new SelectList(Model.States, "Id", "Name"))" class="inputBox">
+                <option hidden selected disabled>Select a state</option>
+            </select>
+        </div>
+        <span asp-validation-for="Subsidiary.StateId" class="text-danger"></span>
+        <hr />
+        <div>
+            <input type="submit" value="Create" class="myBottom confirmBotton" />
+            <a asp-action="Index" class="myBottom backBotton">Back</a>
+        </div>
+    </form>
+</body>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

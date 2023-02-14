@@ -9,22 +9,26 @@ using Microsoft.EntityFrameworkCore;
 using WebAppSalesMVC.Data;
 using WebAppSalesMVC.Models;
 using WebAppSalesMVC.Models.ViewModels;
+using WebAppSalesMVC.Services;
 
 namespace WebAppSalesMVC.Controllers
 {
     public class StatesController : Controller
     {
         private readonly WebAppSalesMVCContext _context;
+        private readonly StateService _stateService;
 
-        public StatesController(WebAppSalesMVCContext context)
+        public StatesController(WebAppSalesMVCContext context, StateService stateService)
         {
             _context = context;
+            _stateService = stateService;
         }
 
         // GET: States
         public async Task<IActionResult> Index()
         {
-            return View(await _context.State.ToListAsync());
+            var states = await _stateService.GetStatesAsync();
+            return View(states);
         }
 
         // GET: States/Details/5

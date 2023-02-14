@@ -8,13 +8,25 @@ namespace WebAppSalesMVC.Models
     {
         public int Id { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy}")]
+        [Required(ErrorMessage = "{0} cannot be empty!")]
+        [DisplayFormat(DataFormatString = "{0: MM/dd/yyyy}")]
+        [Display(Name = "Date sale")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
-        public double Amount { get; set; }
-        public SaleStatus Status { get; set; }
-        public Subsidiary Subsidiary { get; set; }
-        public int SubsidiaryId { get; set; }
 
+        [Required(ErrorMessage = "{0} cannot be empty!")]
+        [DataType(DataType.Currency)]
+        public double Amount { get; set; }
+
+        [Required(ErrorMessage = "{0} cannot be empty!")]
+        public SaleStatus Status { get; set; }
+
+        public Subsidiary Subsidiary { get; set; }
+
+        [Required(ErrorMessage = "{0} cannot be empty!")]
+        [Display(Name = "Subsidiary")]
+        public int SubsidiaryId { get; set; }
+        
         public SalesRecord()
         {
         }

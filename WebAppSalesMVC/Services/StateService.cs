@@ -19,7 +19,7 @@ namespace WebAppSalesMVC.Services
 
         public async Task<List<State>> GetStatesAsync()
         {
-            return await _context.State.OrderBy(x => x.Name).ToListAsync();
+            return await _context.State.Include(x => x.Subsidiaries).OrderBy(x => x.Name).ToListAsync();
         }
     }
 }

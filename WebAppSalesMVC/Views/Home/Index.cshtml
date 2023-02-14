@@ -1,6 +1,23 @@
-﻿@{
+﻿@model IEnumerable<WebAppSalesMVC.Models.State>
+@{
     ViewData["Title"] = "Home Page";
+    int? id = null;
 }
+<link rel="stylesheet" href="~/css/Style.css" />
 
-<h1>Cadastre suas vendas e as consulte posteriormente e convencionalmente.</h1>
-<a asp-controller="sales" asp-action="stateofsale" >Cadastrar</a>
+<div class="row">
+    <div class="col-lg-8 boxHomeYelow">
+        <p class="textHome">SALE</p>
+        <p class="textHome">REGISTER</pclass="textHome">
+        <p class="textHome">CONSULT</p>
+    </div>
+    <div class="col-lg-offset-7 boxHomeGray">
+        <p class="textHome">Register a sale</p>
+        <form asp-controller="Sales" asp-action="Create" method="get">
+            <select asp-for="@id" asp-items="@(new SelectList(Model, "Id", "Name"))" class="inputBox">
+                <option disabled hidden selected>Select the state of sale</option>
+            </select>
+            <input id="btnHome" type="submit" value="Next" class="myBottom confirmBotton" />
+        </form>
+    </div>
+</div>

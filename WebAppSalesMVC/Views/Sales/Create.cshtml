@@ -2,19 +2,59 @@
 @{
     ViewData["Title"] = "Sale Create";
 }
-<h1>@ViewData["Title"]</h1>
-<hr />
-<form asp-action="Create2">
-    <label asp-for="SalesRecord.Date"></label>
-    <input asp-for="SalesRecord.Date">
-
-    <label asp-for="SalesRecord.Amount"></label>
-    <input asp-for="SalesRecord.Amount" />
-
-    <label asp-for="SalesRecord.Status"></label>
-    <select asp-for="SalesRecord.Status" asp-items="Html.GetEnumSelectList<WebAppSalesMVC.Models.Enums.SaleStatus>()"></select>
-
-    <label asp-for="SalesRecord.SubsidiaryId"></label>
-    <select asp-for="SalesRecord.SubsidiaryId" asp-items="@(new SelectList(Model.Subsidiaries, "Id", "Name"))"></select>
-    <input type="submit" />
-</form>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/Style.css" />
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+</head>
+<body>
+    <form asp-action="Create" method="post" >
+        <div>
+            <label asp-for="SalesRecord.Date"></label>
+        </div>
+        <div>
+            <input asp-for="SalesRecord.Date" class="inputBox">
+        </div>
+        <div>
+            <span asp-validation-for="SalesRecord.Date"></span>
+        </div>
+        <div>
+            <label asp-for="SalesRecord.Amount"></label>
+        </div>
+        <div>
+            <input asp-for="SalesRecord.Amount" placeholder="Amount" class="inputBox" />
+        </div>
+        <div>
+            <span asp-validation-for="SalesRecord.Amount"></span>
+        </div>
+        <div>
+            <label asp-for="SalesRecord.Status"></label>
+        </div>
+        <div>
+            <select asp-for="SalesRecord.Status" asp-items="Html.GetEnumSelectList<WebAppSalesMVC.Models.Enums.SaleStatus>()" class="inputBox">
+                <option disabled hidden selected>Select a status</option>
+            </select>
+        </div>
+        <div>
+            <span asp-validation-for="SalesRecord.Status"></span>
+        </div>
+        <div>
+            <label asp-for="SalesRecord.SubsidiaryId"></label>
+        </div>
+        <div>
+            <select asp-for="SalesRecord.SubsidiaryId" asp-items="@(new SelectList(Model.Subsidiaries, "Id", "Name"))" class="inputBox">
+                <option disabled hidden selected>Select a subsidiary of state</option>
+            </select>
+        </div>
+        <div>
+            <span asp-validation-for="SalesRecord.SubsidiaryId"></span>
+        </div>
+        <hr />
+        <input type="hidden"  asp-for="SalesRecord.SubsidiaryId"/>
+        <input type="submit" value="Create" class="myBottom confirmBotton" />
+        <a asp-controller="Home" asp-action="Index" class="myBottom backBotton">Back</a>
+    </form>
+</body>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
