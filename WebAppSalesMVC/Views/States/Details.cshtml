@@ -2,20 +2,15 @@
 @{
     ViewData["Title"] = "Details state";
 }
+<link rel="stylesheet" href="~/css/Style.css" />
 <h1>@ViewData["Title"]</h1>
 <hr />
-<div class="row">
-    <div class="col-lg-4">
-        <dl>
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd style="background-color: #e7e7e7; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; padding: 5px">
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-        </dl>
-        <hr />
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn alert-info">Edit</a>
-        <a asp-action="Index" class="btn alert-warning">Back</a>
+<body>
+    <div>
+        <label>@Html.DisplayNameFor(model => model.Name)</label>
     </div>
-</div>
+    <div class="boxInfo">@Html.DisplayFor(model => model.Name)</div>
+    <hr />
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="myBottom editBotton">Edit</a>
+    <a asp-action="Index" class="myBottom backBotton">Back</a>
+</body>

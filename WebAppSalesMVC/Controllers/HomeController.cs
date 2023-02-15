@@ -9,11 +9,9 @@ using WebAppSalesMVC.Services;
 
 namespace WebAppSalesMVC.Controllers
 {
-
     public class HomeController : Controller
     {
         public readonly StateService _stateService;
-
         public HomeController(StateService stateService)
         {
             _stateService = stateService;

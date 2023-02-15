@@ -2,25 +2,27 @@
 @{
     ViewData["Title"] = "Edit state";
 }
+<link rel="stylesheet" href="~/css/Style.css"/>
 <h1>@ViewData["Title"]</h1>
 <hr />
-<div class="row">
-    <div class="col-lg-4">
-        <form asp-action="Edit">
-            <div class="form-group">
-                <input type="hidden" asp-for="Id" />
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <hr />
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn alert-success" />
-                <a asp-action="Index" class="btn alert-warning">Back</a>
-            </div>
-        </form>
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+    <div>
+        <label asp-for="Name"></label>
     </div>
-</div>
+    <div>
+        <input asp-for="Name" class="inputBox" />
+    </div>
+    <div>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <hr />
+    <div>
+        <input type="submit" value="Save" class="myBottom confirmBotton" />
+        <a asp-action="Index" class="myBottom backBotton">Back</a>
+    </div>
+</form>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

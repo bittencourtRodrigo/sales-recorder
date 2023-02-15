@@ -1,10 +1,26 @@
-﻿#btnHome{
+﻿.navSearch {
+    background-color: #e7e7e7;
+}
+.boxInfo {
+    border-radius: 5px;
+    width: 300px;
+    height: 30px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    background-color: #e7e7e7;
+    color: #505050;
+    padding-top: 4px;
+    margin-left: 420px;
+    margin-right: 420px;
+}
+#btnHome{
     width: 300px;
 }
 .textHome{
     font-family: Constantia;
     font-weight: 600;
     font-size: 42px;
+    text-align: center; 
 }
 .boxHomeYelow{
     background-color: #ffeea9;
@@ -22,9 +38,7 @@
     
 }
 
-
 body {
-
     background-color: aliceblue;
     text-align: center;
     column-width: 800px;
@@ -39,7 +53,6 @@ body {
     -ms-touch-action: manipulation;
     touch-action: manipulation;
     cursor: pointer;
-    background-image: none;
     border: 1px solid transparent;
     padding: 6px 12px;
     font-size: 14px;
@@ -61,6 +74,12 @@ body {
     border-color: #d6e9c6;
 }
 
+.editBotton {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
 .deleteBotton {
     color: #a94442;
     background-color: #f2dede;
@@ -73,14 +92,13 @@ body {
     border-color: #faebcc;
 }
 
-
 .inputBox {
     border-radius: 5px;
     width: 300px;
     height: 30px;
     margin-bottom: 15px;
     font-size: 16px;
-    color: #959595;
+    color: #505050;
     border-color: #e7e7e7;
 }
 

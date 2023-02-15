@@ -26,7 +26,7 @@ namespace WebAppSalesMVC.Controllers
             return View();
         }
 
-        public async Task<IActionResult> SearchSimpleByDate(DateTime? dateMin, DateTime? dateMax)
+        public async Task<IActionResult> GeneralSalesSearch(DateTime? dateMin, DateTime? dateMax)
         {
             if (!dateMax.HasValue)
             {
@@ -42,7 +42,7 @@ namespace WebAppSalesMVC.Controllers
             return View(listSales);
         }
 
-        public async Task<IActionResult> SearchGroupingByDate(DateTime? dateMin, DateTime? dateMax)
+        public async Task<IActionResult> SalePerStateSearch(DateTime? dateMin, DateTime? dateMax)
         {
             if (!dateMax.HasValue)
             {
@@ -59,9 +59,9 @@ namespace WebAppSalesMVC.Controllers
         }
         public async Task<IActionResult> Create(int? Id)
         {
-            if (!Id.HasValue)
+            if (Id == null)
             {
-                return RedirectToAction("Error", new { id = Id.Value });
+                return RedirectToAction("Index", "Home");
             }
             var subsidiaries = await _subsidiaryService.GetSubByState(Id.Value);
             if (subsidiaries == null)

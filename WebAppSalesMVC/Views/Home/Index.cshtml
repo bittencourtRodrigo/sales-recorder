@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-lg-8 boxHomeYelow">
         <p class="textHome">SALE</p>
-        <p class="textHome">REGISTER</pclass="textHome">
+        <p class="textHome">REGISTER</p>
         <p class="textHome">CONSULT</p>
     </div>
     <div class="col-lg-offset-7 boxHomeGray">
@@ -17,7 +17,11 @@
             <select asp-for="@id" asp-items="@(new SelectList(Model, "Id", "Name"))" class="inputBox">
                 <option disabled hidden selected>Select the state of sale</option>
             </select>
+            <span asp-validation-for="@id"></span>
             <input id="btnHome" type="submit" value="Next" class="myBottom confirmBotton" />
         </form>
     </div>
 </div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

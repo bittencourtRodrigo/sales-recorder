@@ -3,8 +3,7 @@
 }
 <link rel="stylesheet" href="~/css/Style.css" />
 <div class="col-lg-6">
-    <form asp-action="SearchSimpleByDate">
-
+    <form asp-action="GeneralSalesSearch">
         <h1>General sales</h1>
         <hr />
         <div>
@@ -13,7 +12,6 @@
         <div>
             <input type="date" name="dateMin" class="inputBox" />
         </div>
-
         <div>
             <label>Max Date</label>
         </div>
@@ -27,8 +25,7 @@
     </form>
 </div>
 <div class="col-lg-6">
-    <form asp-action="SearchGroupingByDate">
-
+    <form asp-action="SalePerStateSearch">
         <h1>Sales per state</h1>
         <hr />
         <div>

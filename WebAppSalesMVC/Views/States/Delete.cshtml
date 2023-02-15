@@ -2,24 +2,22 @@
 @{
     ViewData["Title"] = "Delete state";
 }
+<link rel="stylesheet" href="~/css/Style.css"/>
 <h1>@ViewData["Title"]</h1>
 <hr />
-<div class="row">
-    <div class="col-lg-4">
-        <dl class="">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd style="background-color: #e7e7e7; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;  padding: 5px">
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-        </dl>
-        <hr />
-        <h4>Are you sure you want to delete this?</h4>
-        <form asp-action="Delete">
-            <input type="hidden" asp-for="Id" />
-            <input type="submit" value="Delete" class="btn alert-danger"/>
-            <a asp-action="Index" class="btn alert-warning">Back</a>
-        </form>
+<body>
+    <div>
+        <label>
+            @Html.DisplayNameFor(model => model.Name)
+        </label>
     </div>
-</div>
+    <div class="boxInfo">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <hr />
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="myBottom deleteBotton" />
+        <a asp-action="Index" class="myBottom backBotton">Back</a>
+    </form>
+</body>
