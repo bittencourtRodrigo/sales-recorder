@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;  
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -13,6 +13,7 @@ namespace WebAppSalesMVC.Models
         [Required(ErrorMessage = "{0} cannot be empty!")]
         [StringLength(20, MinimumLength = 2)]
         public string Name { get; set; }
+
         public ICollection<Subsidiary> Subsidiaries { get; set; } = new List<Subsidiary>();
 
         public State()
@@ -30,7 +31,7 @@ namespace WebAppSalesMVC.Models
             Subsidiaries.Add(subsidiary);
         }
 
-        public double TotalSales(DateTime initial, DateTime final) 
+        public double TotalSales(DateTime initial, DateTime final)
         {
             return Subsidiaries.Sum(sb => sb.TotalSales(initial, final));
         }

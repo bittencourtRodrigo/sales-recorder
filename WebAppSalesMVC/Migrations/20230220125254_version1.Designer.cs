@@ -9,8 +9,8 @@ using WebAppSalesMVC.Data;
 namespace WebAppSalesMVC.Migrations
 {
     [DbContext(typeof(WebAppSalesMVCContext))]
-    [Migration("20230207113810_temp")]
-    partial class temp
+    [Migration("20230220125254_version1")]
+    partial class version1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,7 @@ namespace WebAppSalesMVC.Migrations
 
                     b.Property<int>("Status");
 
-                    b.Property<int?>("SubsidiaryId");
+                    b.Property<int>("SubsidiaryId");
 
                     b.HasKey("Id");
 
@@ -44,7 +44,9 @@ namespace WebAppSalesMVC.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
                     b.HasKey("Id");
 
@@ -80,7 +82,8 @@ namespace WebAppSalesMVC.Migrations
                 {
                     b.HasOne("WebAppSalesMVC.Models.Subsidiary", "Subsidiary")
                         .WithMany("SalesRecords")
-                        .HasForeignKey("SubsidiaryId");
+                        .HasForeignKey("SubsidiaryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("WebAppSalesMVC.Models.Subsidiary", b =>

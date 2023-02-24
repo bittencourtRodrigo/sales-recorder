@@ -26,14 +26,14 @@ namespace WebAppSalesMVC.Models
         [Display(Name = "Fixed Cost")]
         [DataType(DataType.Currency)]
         public double FixedCost { get; set; }
-            
+
         public State State { get; set; }
 
         [Required(ErrorMessage = "{0} cannot be empty!")]
         [Display(Name = "State")]
         public int StateId { get; set; } //foreign key incrementation
+
         public ICollection<SalesRecord> SalesRecords { get; set; } = new List<SalesRecord>();
-       
 
         public Subsidiary()
         {

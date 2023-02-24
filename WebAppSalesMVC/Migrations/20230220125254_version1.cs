@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebAppSalesMVC.Migrations
 {
-    public partial class temp : Migration
+    public partial class version1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace WebAppSalesMVC.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,7 +53,7 @@ namespace WebAppSalesMVC.Migrations
                     Date = table.Column<DateTime>(nullable: false),
                     Amount = table.Column<double>(nullable: false),
                     Status = table.Column<int>(nullable: false),
-                    SubsidiaryId = table.Column<int>(nullable: true)
+                    SubsidiaryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,7 +63,7 @@ namespace WebAppSalesMVC.Migrations
                         column: x => x.SubsidiaryId,
                         principalTable: "Subsidiary",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

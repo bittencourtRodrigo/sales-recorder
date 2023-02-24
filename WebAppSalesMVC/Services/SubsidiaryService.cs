@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAppSalesMVC.Data;
 using WebAppSalesMVC.Models;
-using WebAppSalesMVC.Models.Enums;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
 using WebAppSalesMVC.Services.Exceptions;
 
 namespace WebAppSalesMVC.Services
@@ -62,15 +59,14 @@ namespace WebAppSalesMVC.Services
             {
                 throw new NotFoundExeption("Some data was not found");
             }
-
             try
             {
-                _context.Update(subsidiary); //May return concurrency error
+                _context.Update(subsidiary);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException e)
             {
-                throw new DbConcurrencyException(e.Message); //to keep segregation and return a possible service class error, we re-post the error from it
+                throw new DbConcurrencyException(e.Message);
             }
         }
 

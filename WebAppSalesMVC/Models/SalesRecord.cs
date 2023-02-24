@@ -26,7 +26,7 @@ namespace WebAppSalesMVC.Models
         [Required(ErrorMessage = "{0} cannot be empty!")]
         [Display(Name = "Subsidiary")]
         public int SubsidiaryId { get; set; }
-        
+
         public SalesRecord()
         {
         }

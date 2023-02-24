@@ -20,7 +20,6 @@ namespace WebAppSalesMVC.Services
         public async Task<List<SalesRecord>> GetSalesByDateAsync(DateTime? dateMin, DateTime? dateMax)
         {
             var request = from obj in _context.SalesRecord select obj;
-
             if (dateMin.HasValue)
             {
                 request = request.Where(x => x.Date >= dateMin.Value.Date);
@@ -29,17 +28,12 @@ namespace WebAppSalesMVC.Services
             {
                 request = request.Where(x => x.Date <= dateMax.Value.Date);
             }
-
-            return await request.Include(x => x.Subsidiary)
-                .Include(x => x.Subsidiary.State)
-                .OrderBy(x => x.Date)
-                .ToListAsync();
+            return await request.Include(x => x.Subsidiary).Include(x => x.Subsidiary.State).OrderBy(x => x.Date).ToListAsync();
         }
-        
+
         public async Task<List<IGrouping<State, SalesRecord>>> GetSalesStatesByDateAsync(DateTime? dateMin, DateTime? dateMax)
         {
             var request = from obj in _context.SalesRecord select obj;
-
             if (dateMin.HasValue)
             {
                 request = request.Where(x => x.Date >= dateMin.Value.Date);
@@ -48,12 +42,7 @@ namespace WebAppSalesMVC.Services
             {
                 request = request.Where(x => x.Date <= dateMax.Value.Date);
             }
-
-            return await request.Include(x => x.Subsidiary)
-                .Include(x => x.Subsidiary.State)
-                .OrderBy(x => x.Date)
-                .GroupBy(x => x.Subsidiary.State)
-                .ToListAsync();
+            return await request.Include(x => x.Subsidiary).Include(x => x.Subsidiary.State).OrderBy(x => x.Date).GroupBy(x => x.Subsidiary.State).ToListAsync();
         }
 
         public void CreateSale(SalesRecord salesRecord)

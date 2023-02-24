@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using WebAppSalesMVC.Models.ViewModels;
 using WebAppSalesMVC.Services;
@@ -12,40 +9,25 @@ namespace WebAppSalesMVC.Controllers
     public class HomeController : Controller
     {
         public readonly StateService _stateService;
+
         public HomeController(StateService stateService)
         {
             _stateService = stateService;
         }
 
-        public async Task<IActionResult> Index()
-        {   
-            var states = await _stateService.GetStatesAsync();
+        public async Task<IActionResult> Index() // Initial page.
+        {
+            var states = await _stateService.GetStatesAsync(); // Returns a list of registered states.
+            if (states == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Error 01. Report it." }); // Calls the error page passing the error message.
+            }
             return View(states);
         }
 
-        public IActionResult About()
+        public IActionResult Error(string message) // Error page.
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier, Message = message }); // ViewModel instantiation.
         }
     }
 }

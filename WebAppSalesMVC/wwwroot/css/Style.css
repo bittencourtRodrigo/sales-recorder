@@ -1,6 +1,7 @@
 ﻿.navSearch {
     background-color: #e7e7e7;
 }
+
 .boxInfo {
     border-radius: 5px;
     width: 300px;
@@ -13,29 +14,32 @@
     margin-left: 420px;
     margin-right: 420px;
 }
-#btnHome{
+
+#btnHome {
     width: 300px;
 }
-.textHome{
+
+.textHome {
     font-family: Constantia;
     font-weight: 600;
     font-size: 42px;
-    text-align: center; 
+    text-align: center;
 }
-.boxHomeYelow{
+
+.boxHomeYelow {
     background-color: #ffeea9;
     border-radius: 20px;
     padding: 175px;
     margin-top: 40px;
 }
+
 .boxHomeGray {
     background-color: #e7e7e7;
     border-radius: 20px;
-    padding-bottom: 205px;
+    padding-bottom: 200px;
     padding-top: 205px;
     margin-top: 40px;
     text-align: center;
-    
 }
 
 body {
@@ -109,6 +113,7 @@ label {
     color: #4b4b4b;
     font-family: Constantia;
 }
+
 h1 {
     font-weight: bolder;
     font-family: Constantia;

@@ -59,6 +59,7 @@
                         <li><a asp-area="" asp-controller="States" asp-action="Index">States</a></li>
                         <li><a asp-area="" asp-controller="Subsidiarys" asp-action="Index">Subsidiaries</a></li>
                         <li><a asp-area="" asp-controller="Sales" asp-action="SalesRecords">Sales records</a></li>
+                        <li><a href="">Code (GitHub)</a></li>
                     </ul>
                 </div>
             </div>
@@ -66,12 +67,8 @@
     </header>
 </body>
 <partial name="_CookieConsentPartial" />
-<div class="container body-content">
-    @RenderBody()
-    <footer class="hidden">
-        <i>&empty; This is project at construction. Please, come back later. Att, Team WebAppSalesMVC</i>
-    </footer>
-</div>
+@RenderBody()
+
 <environment include="Development">
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>

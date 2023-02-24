@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebAppSalesMVC.Data;
 using WebAppSalesMVC.Models;
@@ -24,43 +21,35 @@ namespace WebAppSalesMVC.Controllers
             _stateService = stateService;
         }
 
-        // GET: States
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index() // Initial page.
         {
-            var states = await _stateService.GetStatesAsync();
+            var states = await _stateService.GetStatesAsync(); // Returns a list of registered states.
             return View(states);
         }
 
-        // GET: States/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var state = await _context.State
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (state == null)
-            {
-                return NotFound();
-            }
-
-            return View(state);
-        }
-
-        // GET: States/Create
-        public IActionResult Create()
+        public IActionResult Create() // Page state create.
         {
             return View();
         }
 
-        // POST: States/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Error 4. Report it." }); // Calls the error page passing the error message.
+            }
+
+            var state = await _stateService.GetByIdAsync(id.Value); // Returns the state that contains this id.
+            if (state == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Error 5. Report it." }); // Calls the error page passing the error message.
+            }
+            return View(state);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] State state)
+        public async Task<IActionResult> Create([Bind("Id,Name")] State state) // Scarfoldin spawned. Is intact, for future studies.
         {
             if (ModelState.IsValid)
             {
@@ -71,34 +60,28 @@ namespace WebAppSalesMVC.Controllers
             return View(state);
         }
 
-        // GET: States/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Error 6. Report it." }); // Calls the error page passing the error message.
             }
-
-            var state = await _context.State.FindAsync(id);
+            var state = await _stateService.GetByIdAsync(id.Value); // Returns the state that contains this id.
             if (state == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Error 7. Report it." }); // Calls the error page passing the error message.
             }
             return View(state);
         }
 
-        // POST: States/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] State state)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] State state) // Scarfoldin spawned. Is intact, for future studies.
         {
             if (id != state.Id)
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -122,50 +105,45 @@ namespace WebAppSalesMVC.Controllers
             return View(state);
         }
 
-        // GET: States/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Error 8. Report it." }); // Calls the error page passing the error message.
             }
-
-            var state = await _context.State
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var state = await _stateService.GetByIdAsync(id.Value); // Returns the state that contains this id.
             if (state == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Error 9. Report it." }); // Calls the error page passing the error message.
             }
-
             return View(state);
         }
 
-        // POST: States/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id) // Scarfoldin spawned. For future studies.
         {
-            try
+            try // Edit
             {
                 var state = await _context.State.FindAsync(id);
                 _context.State.Remove(state);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            catch (DbUpdateException)
+            catch (DbUpdateConcurrencyException) // Edit
             {
-                return RedirectToAction(nameof(Error), new { message = "You have tried to exclude a state with active subisidiaries." });
+                return RedirectToAction(nameof(Error), new { message = "Error 10. You have tried to exclude a state with subsidiaries." }); // Calls the error page passing the error message.
             }
         }
 
-        private bool StateExists(int id)
+        private bool StateExists(int id) // Scarfoldin spawned. Is intact, for future studies.
         {
             return _context.State.Any(e => e.Id == id);
         }
 
-        public IActionResult Error(string message)
+        public IActionResult Error(string message) // Error page.
         {
-            var ViewModel = new ErrorViewModel() { Message = message, RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
+            var ViewModel = new ErrorViewModel() { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier, Message = message }; // ViewModel instantiation.
             return View(ViewModel);
         }
     }

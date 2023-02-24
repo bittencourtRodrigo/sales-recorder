@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WebAppSalesMVC.Models;
-using WebAppSalesMVC.Models.Enums;
+﻿using System.Collections.Generic;
 
 namespace WebAppSalesMVC.Models.ViewModels
 {

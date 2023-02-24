@@ -1,0 +1,20 @@
+CODE	ERROR IN
+1	Controllers/HomeController/Index
+2	Controllers/SalesController/Create
+3	Controllers/SalesController/Create(POST)
+4	Controllers/StatesConstroller/Details
+5	Controllers/StatesConstroller/Details
+6	Constrolles/StatesConstroller/Edit
+7	Constrolles/StatesConstroller/Edit
+8	Constrolles/StatesConstroller/Delete
+9	Constrolles/StatesConstroller/Delete
+10	Constrolles/StatesConstroller/Delete(POST)
+11	Constrolles/SubsidiariesConstroller/Delete
+12	Constrolles/SubsidiariesConstroller/Delete
+13	Constrolles/SubsidiariesConstroller/Delete(POST)
+14	Constrolles/SubsidiariesConstroller/Edit
+15	Constrolles/SubsidiariesConstroller/Edit
+16	Constrolles/SubsidiariesConstroller/Edit(POST)
+17	Constrolles/SubsidiariesConstroller/Edit(POST)
+18	Constrolles/SubsidiariesConstroller/Details
+19	Constrolles/SubsidiariesConstroller/Details

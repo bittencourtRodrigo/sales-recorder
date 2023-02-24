@@ -28,7 +28,7 @@ namespace WebAppSalesMVC.Migrations
 
                     b.Property<int>("Status");
 
-                    b.Property<int?>("SubsidiaryId");
+                    b.Property<int>("SubsidiaryId");
 
                     b.HasKey("Id");
 
@@ -42,7 +42,9 @@ namespace WebAppSalesMVC.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
                     b.HasKey("Id");
 
@@ -78,7 +80,8 @@ namespace WebAppSalesMVC.Migrations
                 {
                     b.HasOne("WebAppSalesMVC.Models.Subsidiary", "Subsidiary")
                         .WithMany("SalesRecords")
-                        .HasForeignKey("SubsidiaryId");
+                        .HasForeignKey("SubsidiaryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("WebAppSalesMVC.Models.Subsidiary", b =>
