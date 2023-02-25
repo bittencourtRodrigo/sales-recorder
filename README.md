@@ -1,3 +1,5 @@
+![Print](https://raw.githubusercontent.com/bittencourtRodrigo/sales-recorder/master/ReadmeImages/Prints/InitialPage.png)
+[Veja mais prints clicando aqui](https://github.com/bittencourtRodrigo/sales-recorder/tree/master/ReadmeImages/Prints)
 # Registrador de vendas - aplicação web in Visual Studio community 2019
 
 ## Criar estados/distritos, subsidiárias para cada estado e registrar vendas. Backend: C#; Frontend: HTML, CSS e Js; Banco de dados: MySql; Adicionais: Entity Framework, .Net core e ASP.NET Core MVC.
