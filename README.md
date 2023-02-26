@@ -2,7 +2,7 @@
 [See more prints by clicking here](https://github.com/bittencourtRodrigo/sales-recorder/tree/master/ReadmeImages/Prints)
 ## Sales Recorder - web application in Visual Studio community 2019
 
-## Create states/districts, subsidiaries for each state and record sales. Backend: C#; Frontend: HTML, CSS and Js; Database: MySql; Additions: Entity Framework, .Net core and ASP.NET Core MVC.
+## Create states/districts, subsidiaries for each state and record sales. Backend: C#; Frontend: HTML, CSS and Js; Database: MySql; Additions: Entity Framework, .Net core 2.1 and ASP.NET Core MVC.
 
 This project was inspired on [C# course](https://www.udemy.com/course/programacao-orientada-a-objetos-csharp/) by Professor [Nélio alves](https://www.linkedin.com/in/nelio-alves/). It has the same purpose, but the path there was reasonably taken out of context by me, I ventured out to practice and shaped it my way. 
 
