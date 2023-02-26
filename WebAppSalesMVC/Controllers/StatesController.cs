@@ -23,7 +23,7 @@ namespace WebAppSalesMVC.Controllers
 
         public async Task<IActionResult> Index() // Initial page.
         {
-            var states = await _stateService.GetStatesAsync(); // Returns a list of registered states.
+            var states = await _stateService.GetStatesIncSubsAsync(); // Returns a list of registered states.
             return View(states);
         }
 
